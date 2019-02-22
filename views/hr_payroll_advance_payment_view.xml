@@ -56,6 +56,6 @@
     </record>
 
     <!-- Menus -->
-    <menuitem action="hr_payroll_advance_payment_action" id="menu_hr_payroll_advance_payment_tree" parent="menu_hr_payroll_root" groups="hr_payroll.group_hr_payroll_user"/>
+    <menuitem action="hr_payroll_advance_payment_action" id="menu_hr_payroll_advance_payment_tree" parent="hr_payroll.menu_hr_payroll_root" groups="hr_payroll.group_hr_payroll_user"/>
 
 </odoo>
