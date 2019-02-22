@@ -13,7 +13,7 @@ class HrPayrollAdvancePayment(models.Model):
     _description = "Advance payment"
     _order = "payment_date desc"
 
-    employee_id = fields.Many2one('hr.employee', string="Employee", default=_default_employee, required=True, ondelete='cascade', index=True)
+    employee_id = fields.Many2one('hr.employee', string="Employee", required=True, ondelete='cascade', index=True)
     department_id = fields.Many2one('hr.department', string="Department", related="employee_id.department_id",
         readonly=True)
     payment_date = fields.Date(string="Payment date", default=fields.Date.today())
