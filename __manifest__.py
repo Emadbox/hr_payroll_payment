@@ -10,7 +10,7 @@
     'author': 'jburckel',
     'depends': ['hr_payroll'],
     'data': [
-        'views/hr_paroll_advance_payment_view.xml',
+        'views/hr_payroll_advance_payment_view.xml',
     ],
     'installable': True,
     'auto_install': False,
