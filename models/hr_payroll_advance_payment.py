@@ -29,3 +29,11 @@ class HrPayrollAdvancePayment(models.Model):
         ], string='Status', index=True, readonly=True, default='draft',
         track_visibility='onchange', copy=False)
     move_id = fields.Many2one('account.move', string='Journal Entry', readonly=True, index=True, ondelete='restrict', copy=False, help="Link to the automatically generated Journal Items.")
+    number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)
+    contract_id = fields.Many2one('hr.contract', string='Contract', default=_get_contract, required=True, help="The contract for which applied this input")
+
+    @api.onchange(employee_id)
+    def _get_contract(self):
+        contracts = self.env['hr.contract'].search([('employee_id', '=', self.employee_id.id), ('date_start', '>=', self.payment_date), , ('date_end', '<=', self.payment_date)])
+        if contracts:
+            return contracts.ids[0]
