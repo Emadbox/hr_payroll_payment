@@ -34,6 +34,6 @@ class HrPayrollAdvancePayment(models.Model):
 
     @api.onchange(employee_id)
     def _get_contract(self):
-        contracts = self.env['hr.contract'].search([('employee_id', '=', self.employee_id.id), ('date_start', '>=', self.payment_date), ('date_end', '<=', self.payment_date)])
+        contracts = self.env['hr.contract'].search([('employee_id', '=', self.employee_id.id)])
         if contracts:
             self.contract_id = contracts.ids[0]
