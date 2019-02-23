@@ -32,8 +32,8 @@ class HrPayrollAdvancePayment(models.Model):
     number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True, help="The contract for which applied this input")
 
-    @api.onchange(employee_id)
+    @api.onchange('employee_id')
     def _get_contract(self):
-        contracts = self.env['hr.contract'].search([('employee_id', '=', self.employee_id.id)])
+        contracts = self.env['hr.contract'].search([('employee_id', '=', self.employee_id.id), ('date_start', '>=', self.payment_date), ('date_end', '<=', self.payment_date)])
         if contracts:
             self.contract_id = contracts.ids[0]
