@@ -35,7 +35,7 @@
                         <field name="employee_id" />
                         <field name="contract_id"/>
                         <field name="payment_date"/>
-                        <field name="sequence" />
+                        <field name="reference" />
                         <field name="communication"/>
                       </group>
                       <group>
