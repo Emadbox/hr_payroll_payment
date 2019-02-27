@@ -36,10 +36,22 @@ class HrPayrollAdvancePayment(models.Model):
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input")
     reference = fields.Char(string='Vendor Reference', readonly=True, states={'draft': [('readonly', False)]}
-       help="The receipt number or other reference of this advance payment.", readonly=True, states={'draft': [('readonly', False)]})
+       help="The receipt number or other reference of this advance payment.", readonly=True,
+       states={'draft': [('readonly', False)]})
+    name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
+    states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
 
     @api.onchange('employee_id')
     def _get_contract(self):
         contracts = self.env['hr.contract'].search([('employee_id', '=', self.employee_id.id),('state', '!=', 'closed')])
         if contracts:
             self.contract_id = contracts.ids[0]
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            seq = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('hr.payroll.advance_payment') or _('New')
+        else:
+            seq = self.env['ir.sequence'].next_by_code('hr.payroll.advance_payment') or _('New')
+        vals['name'] = seq
+        return super(HrPayrollAdvancePayment, self).create(vals)
