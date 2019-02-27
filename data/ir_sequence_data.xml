@@ -9,6 +9,5 @@
             <field name="prefix">SAPRCPT/%(range_year)s/</field>
             <field name="padding">4</field>
         </record>
-
     </data>
 </odoo>
