@@ -35,7 +35,7 @@ class HrPayrollAdvancePayment(models.Model):
     number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input")
-    reference = fields.Char(string='Vendor Reference',readonly=True, states={'draft': [('readonly', False)]}, 
+    reference = fields.Char(string='Reference',readonly=True, states={'draft': [('readonly', False)]},
        help="The receipt number or other reference of this advance payment.")
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
     states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
@@ -49,8 +49,6 @@ class HrPayrollAdvancePayment(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            seq = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('hr.payroll.advance_payment') or _('New')
-        else:
             seq = self.env['ir.sequence'].next_by_code('hr.payroll.advance_payment') or _('New')
         vals['name'] = seq
         return super(HrPayrollAdvancePayment, self).create(vals)
