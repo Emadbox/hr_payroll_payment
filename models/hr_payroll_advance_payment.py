@@ -18,9 +18,11 @@ class HrPayrollAdvancePayment(models.Model):
         readonly=True)
     payment_date = fields.Date(string="Payment date")
     amount = fields.Monetary(string="Payment amount", required=True)
-    currency_id = fields.Many2one('res.currency', string='Currency', required=True, default=lambda self: self.env.user.company_id.currency_id)
+    currency_id = fields.Many2one('res.currency', string='Currency', required=True,
+        default=lambda self: self.env.user.company_id.currency_id)
     communication = fields.Char(string='Memo')
-    journal_id = fields.Many2one('account.journal', string='Payment Journal', required=True, domain=[('type', 'in', ('bank', 'cash'))])
+    journal_id = fields.Many2one('account.journal', string='Payment Journal',
+        required=True, domain=[('type', 'in', ('bank', 'cash'))])
     company_id = fields.Many2one('res.company', related='journal_id.company_id', string='Company', readonly=True)
     state = fields.Selection([
             ('draft','Unposted'),
@@ -28,9 +30,13 @@ class HrPayrollAdvancePayment(models.Model):
             ('cancel', 'Cancelled'),
         ], string='Status', index=True, readonly=True, default='draft',
         track_visibility='onchange', copy=False)
-    move_id = fields.Many2one('account.move', string='Journal Entry', readonly=True, index=True, ondelete='restrict', copy=False, help="Link to the automatically generated Journal Items.")
+    move_id = fields.Many2one('account.move', string='Journal Entry', readonly=True, index=True,
+        ondelete='restrict', copy=False, help="Link to the automatically generated Journal Items.")
     number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)
-    contract_id = fields.Many2one('hr.contract', string='Contract', required=True, help="The contract for which applied this input")
+    contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
+        help="The contract for which applied this input")
+    reference = fields.Char(string='Vendor Reference', readonly=True, states={'draft': [('readonly', False)]}
+       help="The receipt number or other reference of this advance payment.", readonly=True, states={'draft': [('readonly', False)]})
 
     @api.onchange('employee_id')
     def _get_contract(self):
