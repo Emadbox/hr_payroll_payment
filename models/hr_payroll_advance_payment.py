@@ -16,7 +16,7 @@ class HrPayrollAdvancePayment(models.Model):
     employee_id = fields.Many2one('hr.employee', string="Employee", required=True, ondelete='cascade', index=True)
     department_id = fields.Many2one('hr.department', string="Department", related="employee_id.department_id",
         readonly=True)
-    payment_date = fields.Date(string="Payment date", default=datetime.today())
+    payment_date = fields.Date(string="Payment date")
     amount = fields.Monetary(string="Payment amount", required=True)
     currency_id = fields.Many2one('res.currency', string='Currency', required=True, default=lambda self: self.env.user.company_id.currency_id)
     communication = fields.Char(string='Memo')
