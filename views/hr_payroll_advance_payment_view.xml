@@ -39,7 +39,7 @@
                       <group>
                         <field name="employee_id" />
                         <field name="contract_id"/>
-                        <field name="payslip_id"/>
+                        <field name="payment_id"/>
                         <field name="payment_date"/>
                         <field name="reference" />
                         <field name="communication"/>
