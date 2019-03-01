@@ -7,14 +7,7 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     _name = 'hr.payroll.payment.config.settings'
     _inherit = 'res.config.settings'
 
+    company_id = fields.Many2one('res.company', string='Company', required=True,
+        default=lambda self: self.env.user.company_id)
     payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
     advance_payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
-
-    @api.multi
-    def execute(self):
-         values = {}
-         res = super(HRPayrollPaymentConfigSettings, self).execute()
-         values['payment_account'] = self.payment_account.id
-         res.update({'payment_account': values['payment_account'] or False})
-
-         return res
