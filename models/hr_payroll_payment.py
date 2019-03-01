@@ -27,7 +27,7 @@ class HrPayrollPayment(models.Model):
     state = fields.Selection([
             ('draft','Unposted'),
             ('posted', 'Posted'),
-            ('deduct', 'Deducted'),
+            ('deducted', 'Deducted'),
             ('cancel', 'Cancelled'),
         ], string='Status', index=True, readonly=True, default='draft',
         track_visibility='onchange', copy=False)
@@ -40,11 +40,11 @@ class HrPayrollPayment(models.Model):
        help="The receipt number or other reference of this payment.")
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
     states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
-    type = fields.Selection([
+    payment_type = fields.Selection([
     ('payment', 'Salary payment'),
-    ('advance_payment', 'Advance salary payment')
+    ('advance_payment', 'Advance salary payment'),
     ], string='Payment type', default='payment')
-    percentage_by_payslip=fields.float(string='Percentage by payslip', help="For advance payment, you can indicate the percentage of the payment you would like to deduct on payslip", default=100.)
+    percentage_by_payslip = fields.Float(string='Percentage by payslip', help="For advance payment, you can indicate the percentage of the payment you would like to deduct on payslip", default=100)
 
     @api.onchange('employee_id')
     def _get_contract(self):
