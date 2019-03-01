@@ -11,3 +11,5 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
         default=lambda self: self.env.user.company_id)
     payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
     advance_payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
+    test = fields.Boolean(string='Test',
+        help="Test")

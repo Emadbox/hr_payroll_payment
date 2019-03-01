@@ -13,6 +13,7 @@
                 <group string="Settings">
                     <field name="payment_account"/>
                     <field name="advance_payment_account"/>
+                    <field name="test"/>
                 </group>
             </form>
         </field>
