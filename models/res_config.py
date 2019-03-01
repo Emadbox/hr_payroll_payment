@@ -9,5 +9,5 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.user.company_id)
-    payment_account = fields.Many2one('account.account', related='company_id.payment_account', 'Debit Account', domain=[('deprecated', '=', False)])
-    advance_payment_account = fields.Many2one('account.account', related='company_id.advance_payment_account',  'Debit Account', domain=[('deprecated', '=', False)])
+    payment_account = fields.Many2one('account.account', related='company_id.payment_account', string='Debit Account', domain=[('deprecated', '=', False)])
+    advance_payment_account = fields.Many2one('account.account', related='company_id.advance_payment_account', string='Debit Account', domain=[('deprecated', '=', False)])
