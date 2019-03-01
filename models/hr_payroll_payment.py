@@ -60,15 +60,20 @@ class HrPayrollPayment(models.Model):
     @api.multi
     def post_payment(self):
         for pay in self:
+            if payment_type == 'advance_payment':
+                account = self.company_id.advance_payment_account
+            else:
+                account = self.company_id.payment_account
             payment_vals = {
                 'amount': pay.amount,
                 'payment_date': pay.payment_date,
                 'communication': pay.communication,
                 'partner_id': pay.employee_id.address_home_id.id or False,
-                'partner_type': 'customer',
+                'partner_type': 'supplier',
                 'journal_id': pay.journal_id.id,
                 'payment_type': 'outbound',
-                'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id
+                'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id,
+                'employee_payment_account':
             }
 
             payment = self.env['account.payment'].create(payment_vals)
