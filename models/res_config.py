@@ -5,6 +5,7 @@ from odoo import fields, models
 
 
 class HRPayrollPaymentConfigSettings(models.TransientModel):
+    name = 'hr.payroll.config.settings'
     _inherit = 'base.config.settings'
 
     payment_account = fields.Many2one('account.account', 'Debit Account', domain=[('deprecated', '=', False)])
