@@ -73,7 +73,7 @@ class HrPayrollPayment(models.Model):
                 'journal_id': pay.journal_id.id,
                 'payment_type': 'outbound',
                 'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id,
-                'employee_payment_account':
+                'employee_payment_account': account.id,
             }
 
             payment = self.env['account.payment'].create(payment_vals)
