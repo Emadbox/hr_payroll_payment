@@ -58,6 +58,6 @@ class HrPayrollPayment(models.Model):
         vals['name'] = seq
         return super(HrPayrollPayment, self).create(vals)
 
-    @api.model
+    @api.multi
     def post_payment(self):
         return self.write({'state': 'posted'})
