@@ -12,7 +12,7 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
 
     @api.model
     def get_values(self):
-        res = super(ResConfigSettings, self).get_values()
+        res = super(HRPayrollPaymentConfigSettings, self).get_values()
         payment_account = self.env['ir.config_parameter'].sudo().get_param(
             'payment_account',
             default=None
@@ -27,7 +27,7 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
 
     @api.multi
     def set_values(self):
-        super(ResConfigSettings, self).set_values()
+        super(HRPayrollPaymentConfigSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param(
             'payment_account', self.payment_account
         )
