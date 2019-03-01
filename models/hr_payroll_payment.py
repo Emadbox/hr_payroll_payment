@@ -61,9 +61,9 @@ class HrPayrollPayment(models.Model):
     def post_payment(self):
         for pay in self:
             if pay.payment_type == 'advance_payment':
-                account = self.company_id.advance_payment_account
+                account = self.advance_payment_account
             else:
-                account = self.company_id.payment_account
+                account = self.payment_account
             payment_vals = {
                 'amount': pay.amount,
                 'payment_date': pay.payment_date,
