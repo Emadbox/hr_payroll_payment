@@ -21,11 +21,11 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
         self.ensure_one()
 
         for field_name, key_name in PARAMS:
-            value = getattr(self, field_name, '').strip()
+            value = getattr(self, field_name, '').id
             self.env['ir.config_parameter'].set_param(key_name, value)
 
     def get_default_params(self, cr, uid, fields, context=None):
         res = {}
         for field_name, key_name in PARAMS:
-            res[field_name] = self.env['ir.config_parameter'].get_param(key_name, '').strip()
+            res[field_name] = self.env['ir.config_parameter'].get_param(key_name, '').id
         return res
