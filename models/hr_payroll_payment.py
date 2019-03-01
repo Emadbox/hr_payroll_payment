@@ -32,7 +32,6 @@ class HrPayrollPayment(models.Model):
         ], string='Status',track_visibility='onchange', index=True, readonly=True, default='draft', copy=False)
     payment_id = fields.Many2one('account.payment', string='Journal Entry', readonly=True, index=True,
         ondelete='restrict', copy=False, help="Link to the automatically generated Payment in accounting.")
-    number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input")
     reference = fields.Char(string='Reference',readonly=True, states={'draft': [('readonly', False)]},
