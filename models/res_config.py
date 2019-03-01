@@ -12,8 +12,8 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     _name = 'hr.payroll.payment.config.settings'
     _inherit = 'res.config.settings'
 
-    payment_account = fields.Many2one(comodel_name='account.account', related='company_id.payment_account', string='Debit account', domain=[('deprecated', '=', False)])
-    advance_payment_account = fields.Many2one(comodel_name='account.account', related='company_id.advance_payment_account', string='Debit account', domain=[('deprecated', '=', False)])
+    payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
+    advance_payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
 
     @api.multi
     def set_params(self):
