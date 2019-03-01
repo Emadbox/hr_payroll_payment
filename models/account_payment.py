@@ -7,7 +7,7 @@ from odoo.exceptions import UserError
 class account_payment(models.Model):
     _inherit = "account.payment"
 
-    employee_payment_account = fields.Many2one('account.account', readonly=True, default)
+    employee_payment_account = fields.Many2one('account.account', readonly=True)
 
     @api.one
     @api.depends('invoice_ids', 'payment_type', 'partner_type', 'partner_id')

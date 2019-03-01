@@ -60,7 +60,7 @@ class HrPayrollPayment(models.Model):
     @api.multi
     def post_payment(self):
         for pay in self:
-            if payment_type == 'advance_payment':
+            if pay.payment_type == 'advance_payment':
                 account = self.company_id.advance_payment_account
             else:
                 account = self.company_id.payment_account
