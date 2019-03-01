@@ -18,13 +18,13 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
 
     def get_default_params(self, fields):
         res = {}
-        res['payment_account'] = self.env['ir.values'].get_default('my.config', 'payment_account')
-        res['advance_payment_account'] = self.env['ir.values'].get_default('my.config', 'advance_payment_account')
+        res['payment_account'] = self.env['ir.values'].get_default('hr.payroll.payment.config.settings', 'payment_account')
+        res['advance_payment_account'] = self.env['ir.values'].get_default('hr.payroll.payment.config.settings', 'advance_payment_account')
         return res
 
     @api.multi
     def set_my_category_defaults(self):
         return {
-        self.env['ir.values'].sudo().set_default('my.config', 'payment_account', self.payment_account.id),
-        self.env['ir.values'].sudo().set_default('my.config', 'advance_payment_account', self.advance_payment_account.id)
+        self.env['ir.values'].sudo().set_default('hr.payroll.payment.config.settings', 'payment_account', self.payment_account.id),
+        self.env['ir.values'].sudo().set_default('hr.payroll.payment.config.settings', 'advance_payment_account', self.advance_payment_account.id)
         }
