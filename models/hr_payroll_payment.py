@@ -60,4 +60,22 @@ class HrPayrollPayment(models.Model):
 
     @api.multi
     def post_payment(self):
+        for pay in self:
+            payment_vals = {
+                'amount': pay.amount,
+                'payment_date': pay.payment_date,
+                'communication': pay.communication,
+                'partner_id': self.partner_id.id,
+                'partner_type': 'customer',
+                'journal_id': pay.journal_id,
+                'payment_type': 'outbound',
+                'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id
+            }
+
+            payment = self.env['account.payment'].create(payment_vals)
+            payment.post()
         return self.write({'state': 'posted'})
+
+    @api.multi
+    def cancel_payment(self):
+        return self.write({'state': 'cancel'})
