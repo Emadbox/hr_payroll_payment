@@ -16,18 +16,13 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
     advance_payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
 
-    @api.multi
-    def set_params(self):
-        self.ensure_one()
-
-        for field_name, key_name in PARAMS:
-            value = getattr(self, field_name, '').strip()
-            self.env['ir.config_parameter'].set_param(key_name, int(value))
-
-    def get_default_params(self, cr, uid, fields, context=None):
+    def get_default_params(self, fields):
         res = {}
-        for field_name, key_name in PARAMS:
-            value = self.env['ir.config_parameter'].get_param(key_name, '').strip()
-            if value:
-                res[field_name] = int(value)
+        res['my_category'] = self.env['ir.values'].get_default('my.config', 'payment_account')
+        res['my_category'] = self.env['ir.values'].get_default('my.config', 'advance_payment_account')
         return res
+
+    @api.multi
+    def set_my_category_defaults(self):
+        self.env['ir.values'].sudo().set_default('my.config', 'my_category', self.payment_account.id)
+        self.env['ir.values'].sudo().set_default('my.config', 'my_category', self.advance_payment_account.id)
