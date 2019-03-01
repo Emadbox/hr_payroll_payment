@@ -27,7 +27,7 @@
               <header>
                 <button string="Post" name="post_payment" type="object" states="draft" class="oe_highlight"/>
                 <button string="Cancel" name="cancel_payment" type="object" states="posted" class="oe_highlight"/>
-                <field name="state" widget="statusbar"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,posted,deducted"/>
               </header>
                 <sheet>
                   <div class="oe_title">
