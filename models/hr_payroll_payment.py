@@ -57,3 +57,7 @@ class HrPayrollPayment(models.Model):
             seq = self.env['ir.sequence'].next_by_code('hr.payroll.payment') or _('New')
         vals['name'] = seq
         return super(HrPayrollPayment, self).create(vals)
+
+    @api.model
+    def post_payment(self):
+        return self.write({'state': 'posted'})
