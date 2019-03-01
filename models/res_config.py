@@ -14,7 +14,7 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     def execute(self):
          values = {}
          res = super(HRPayrollPaymentConfigSettings, self).execute()
-         values['payment_account'] = self.payment_account
+         values['payment_account'] = self.payment_account.id
          res.update({'payment_account': values['payment_account'] or False})
 
          return res
