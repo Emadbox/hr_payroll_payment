@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="hr_payroll_payment_view_config" model="ir.ui.view">
-        <field name="name">hr.payroll.payment.config.settings</field>
-        <field name="model">base.config.settings</field>
+        <field name="name">Configure payroll payment</field>
+        <field name="model">hr.payroll.payment.config.settings</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <form string="Configuration" class= "oe_form_configuration">
