@@ -65,7 +65,7 @@ class HrPayrollPayment(models.Model):
                 'amount': pay.amount,
                 'payment_date': pay.payment_date,
                 'communication': pay.communication,
-                'partner_id': self.partner_id.id,
+                'partner_id': pay.employee_id.address_home_id.id or False,
                 'partner_type': 'customer',
                 'journal_id': pay.journal_id,
                 'payment_type': 'outbound',
