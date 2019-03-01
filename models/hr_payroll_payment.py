@@ -44,7 +44,7 @@ class HrPayrollPayment(models.Model):
     ], string='Payment type', default='normal_payment')
     percentage_by_payslip = fields.Float(string='Percentage by payslip', help="For advance payment, you can indicate the percentage of the payment you would like to deduct on payslip", default=100)
     payment_account =
-    advance_payment_account = 
+    advance_payment_account =
 
     @api.onchange('employee_id')
     def _get_contract(self):

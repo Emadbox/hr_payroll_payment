@@ -14,7 +14,7 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
         res.update(
-            payment_account=self.env['ir.config_parameter'].sudo().get_param('hr.payroll.payment.payment_account')
+            payment_account=self.env['ir.config_parameter'].sudo().get_param('hr.payroll.payment.payment_account'),
             advance_payment_account=self.env['ir.config_parameter'].sudo().get_param('hr.payroll.payment.advance_payment_account')
         )
         return res
