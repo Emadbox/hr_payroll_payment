@@ -74,7 +74,7 @@ class HrPayrollPayment(models.Model):
 
             payment = self.env['account.payment'].create(payment_vals)
             payment.post()
-            pay.write('payment_id': payment.id)
+            pay.write({'payment_id': payment.id})
         return self.write({'state': 'posted'})
 
     @api.multi
