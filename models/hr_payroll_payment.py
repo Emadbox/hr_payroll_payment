@@ -30,8 +30,8 @@ class HrPayrollPayment(models.Model):
             ('deducted', 'Deducted'),
             ('cancel', 'Cancelled'),
         ], string='Status',track_visibility='onchange', index=True, readonly=True, default='draft', copy=False)
-    move_id = fields.Many2one('account.move', string='Journal Entry', readonly=True, index=True,
-        ondelete='restrict', copy=False, help="Link to the automatically generated Journal Items.")
+    payment_id = fields.Many2one('account.payment', string='Journal Entry', readonly=True, index=True,
+        ondelete='restrict', copy=False, help="Link to the automatically generated Payment in accounting.")
     number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input")
@@ -74,6 +74,7 @@ class HrPayrollPayment(models.Model):
 
             payment = self.env['account.payment'].create(payment_vals)
             payment.post()
+            pay.write('payment_id': payment.id)
         return self.write({'state': 'posted'})
 
     @api.multi
