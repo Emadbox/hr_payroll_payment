@@ -3,11 +3,11 @@
 
     <!-- views -->
 
-    <record id="hr_payroll_advance_payment_view_tree" model="ir.ui.view">
-        <field name="name">hr.payroll.advance_payment.tree</field>
-        <field name="model">hr.payroll.advance_payment</field>
+    <record id="hr_payroll_payment_view_tree" model="ir.ui.view">
+        <field name="name">hr.payroll.payment.tree</field>
+        <field name="model">hr.payroll.payment</field>
         <field name="arch" type="xml">
-          <tree string="Payroll advance payment" decoration-info="state=='draft'" decoration-muted="state=='posted'" edit="false">
+          <tree string="Payroll payment" decoration-info="state=='draft'" decoration-muted="state=='posted'" edit="false">
                   <field name="employee_id"/>
                   <field name="payment_date"/>
                   <field name="journal_id"/>
@@ -19,11 +19,11 @@
         </field>
     </record>
 
-    <record id="hr_payroll_advance_payment_view_form" model="ir.ui.view">
-        <field name="name">hr.payroll.advance_payment.form</field>
-        <field name="model">hr.payroll.advance_payment</field>
+    <record id="hr_payroll_payment_view_form" model="ir.ui.view">
+        <field name="name">hr.payroll.payment.form</field>
+        <field name="model">hr.payroll.payment</field>
         <field name="arch" type="xml">
-            <form string="Payroll advance payment">
+            <form string="Payroll payment">
                 <sheet>
                   <div class="oe_title">
                     <h1>
@@ -56,15 +56,15 @@
 
     <!-- actions -->
 
-    <record id="hr_payroll_advance_payment_action" model="ir.actions.act_window">
-        <field name="name">Payroll advance payment</field>
-        <field name="res_model">hr.payroll.advance_payment</field>
+    <record id="hr_payroll_payment_action" model="ir.actions.act_window">
+        <field name="name">Payroll payment</field>
+        <field name="res_model">hr.payroll.payment</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{"search_default_today":1}</field>
     </record>
 
     <!-- Menus -->
-    <menuitem action="hr_payroll_advance_payment_action" id="menu_hr_payroll_advance_payment_tree" parent="hr_payroll.menu_hr_payroll_root" groups="hr_payroll.group_hr_payroll_user"/>
+    <menuitem action="hr_payroll_payment_action" id="menu_hr_payroll_payment_tree" parent="hr_payroll.menu_hr_payroll_root" groups="hr_payroll.group_hr_payroll_user"/>
 
 </odoo>

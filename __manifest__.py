@@ -2,11 +2,11 @@
 
 
 {
-    'name': 'HR payroll advance payment',
+    'name': 'HR payroll payment',
     'version': '10.0.0.0.1',
     'category': 'Human Resources',
     'sequence': 82,
-    'summary': 'Manage salary advance payment and connect it to accounting and payroll',
+    'summary': 'Manage salary payment and connect it to accounting and payroll for advance',
     'author': 'jburckel',
     'depends': ['hr_payroll'],
     'data': [

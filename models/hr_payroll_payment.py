@@ -8,9 +8,9 @@ from odoo import models, fields, api, exceptions, _
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
-class HrPayrollAdvancePayment(models.Model):
-    _name = "hr.payroll.advance_payment"
-    _description = "Advance payment"
+class HrPayrollPayment(models.Model):
+    _name = "hr.payroll.payment"
+    _description = "Payroll payment"
     _order = "payment_date desc"
 
     employee_id = fields.Many2one('hr.employee', string="Employee", required=True, ondelete='cascade', index=True)
@@ -36,7 +36,7 @@ class HrPayrollAdvancePayment(models.Model):
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input")
     reference = fields.Char(string='Reference',readonly=True, states={'draft': [('readonly', False)]},
-       help="The receipt number or other reference of this advance payment.")
+       help="The receipt number or other reference of this payment.")
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
     states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
 
@@ -49,6 +49,6 @@ class HrPayrollAdvancePayment(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            seq = self.env['ir.sequence'].next_by_code('hr.payroll.advance_payment') or _('New')
+            seq = self.env['ir.sequence'].next_by_code('hr.payroll.payment') or _('New')
         vals['name'] = seq
-        return super(HrPayrollAdvancePayment, self).create(vals)
+        return super(HrPayrollPayment, self).create(vals)
