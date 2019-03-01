@@ -4,7 +4,8 @@
 from odoo import fields, models
 
 
-class BaseConfigSettings(models.TransientModel):
+class HRPayrollPaymentConfigSettings(models.TransientModel):
     _inherit = 'base.config.settings'
 
-    default_worked_hours = fields.Float(string="Default worked hours", default_model="hr.attendance.weekly")
+    payment_account = fields.Many2one('account.account', 'Debit Account', domain=[('deprecated', '=', False)])
+    advance_payment_account = fields.Many2one('account.account', 'Debit Account', domain=[('deprecated', '=', False)])

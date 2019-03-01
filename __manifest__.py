@@ -11,7 +11,8 @@
     'depends': ['hr_payroll'],
     'data': [
         'views/hr_payroll_advance_payment_view.xml',
-        'data/ir_sequence_data.xml'
+        'data/ir_sequence_data.xml',
+        'views/res_config_view.xml'
     ],
     'installable': True,
     'auto_install': False,
