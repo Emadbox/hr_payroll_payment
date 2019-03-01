@@ -3,12 +3,6 @@
 
 from odoo import fields, models
 
-PARAMS = [
-    ("payment_account", "hr.payroll.payment.config.settings.payment_account"),
-    ("advance_payment_account", "hr.payroll.payment.config.settings.advance_payment_account")
-]
-
-
 class HRPayrollPaymentConfigSettings(models.TransientModel):
     _name = 'hr.payroll.payment.config.settings'
     _inherit = 'res.config.settings'
@@ -16,16 +10,27 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
     advance_payment_account = fields.Many2one('account.account', 'Debit account', domain=[('deprecated', '=', False)])
 
-    def get_default_params(self, fields):
-        res = {}
-        res['payment_account'] = self.env['ir.values'].get_default('hr.payroll.payment.config.settings', 'payment_account')
-        res['advance_payment_account'] = self.env['ir.values'].get_default('hr.payroll.payment.config.settings', 'advance_payment_account')
+    @api.model
+    def get_values(self):
+        res = super(ResConfigSettings, self).get_values()
+        payment_account = self.env['ir.config_parameter'].sudo().get_param(
+            'payment_account',
+            default=None
+        )
+        advance_payment_account = self.env['ir.config_parameter'].sudo().get_param(
+            'advance_payment_account',
+            default=None
+        )
+        res.update(payment_account=payment_account)
+        res.update(advance_payment_account=advance_payment_account)
         return res
 
     @api.multi
-    def set_payment_account_defaults(self):
-        return self.env['ir.values'].sudo().set_default('hr.payroll.payment.config.settings', 'payment_account', self.payment_account.id)
-
-    @api.multi
-    def set_advance_payment_account_defaults(self):
-        return self.env['ir.values'].sudo().set_default('hr.payroll.payment.config.settings', 'advance_payment_account', self.advance_payment_account.id)
+    def set_values(self):
+        super(ResConfigSettings, self).set_values()
+        self.env['ir.config_parameter'].sudo().set_param(
+            'payment_account', self.payment_account
+        )
+        self.env['ir.config_parameter'].sudo().set_param(
+            'advance_payment_account', self.advance_payment_account
+        )
