@@ -52,7 +52,7 @@
                           <field name="amount"/>
                           <field name="currency_id" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_currency"/>
                         </div>
-                        <field name="percentage_by_payslip" widget="percentage" attrs="{'invisible' : ['payment_type', '!=', 'advance_payment']}" />
+                        <field name="percentage_by_payslip" widget="percentage" attrs="{'invisible': [('payment_type', '!=', 'advance_payment')]}" />
                         </group>
                   </group>
                 </sheet>
