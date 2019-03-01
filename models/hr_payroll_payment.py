@@ -30,7 +30,7 @@ class HrPayrollPayment(models.Model):
             ('deducted', 'Deducted'),
             ('cancel', 'Cancelled'),
         ], string='Status',track_visibility='onchange', index=True, readonly=True, default='draft', copy=False)
-    payment_id = fields.Many2one('account.payment', string='Journal Entry', readonly=True, index=True,
+    payment_id = fields.Many2one('account.payment', string='Payment entry', readonly=True, index=True,
         ondelete='restrict', copy=False, help="Link to the automatically generated Payment in accounting.")
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input")
@@ -66,7 +66,7 @@ class HrPayrollPayment(models.Model):
                 'communication': pay.communication,
                 'partner_id': pay.employee_id.address_home_id.id or False,
                 'partner_type': 'customer',
-                'journal_id': pay.journal_id,
+                'journal_id': pay.journal_id.id,
                 'payment_type': 'outbound',
                 'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id
             }
