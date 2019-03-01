@@ -3,18 +3,28 @@
 
 from odoo import fields, models, api
 
-class ResCompany(models.Model):
-    _inherit = "res.company"
-    payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
-    advance_payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
-
-
+PARAMS = [
+    ("payment_account", "hr.payroll.payment.config.settings.payment_account"),
+    ("advance_payment_account", "hr.payroll.payment.config.settings.advance_payment_account"),
+]
 
 class HRPayrollPaymentConfigSettings(models.TransientModel):
     _name = 'hr.payroll.payment.config.settings'
     _inherit = 'res.config.settings'
 
-    company_id = fields.Many2one('res.company', string='Company', required=True,
-        default=lambda self: self.env.user.company_id)
     payment_account = fields.Many2one(comodel_name='account.account', related='company_id.payment_account', string='Debit account', domain=[('deprecated', '=', False)])
     advance_payment_account = fields.Many2one(comodel_name='account.account', related='company_id.advance_payment_account', string='Debit account', domain=[('deprecated', '=', False)])
+
+    @api.multi
+    def set_params(self):
+        self.ensure_one()
+
+        for field_name, key_name in PARAMS:
+            value = getattr(self, field_name, '').strip()
+            self.env['ir.config_parameter'].set_param(key_name, value)
+
+    def get_default_params(self):
+        res = {}
+        for field_name, key_name in PARAMS:
+            res[field_name] = self.env['ir.config_parameter'].get_param(key_name, '').strip()
+        return res
