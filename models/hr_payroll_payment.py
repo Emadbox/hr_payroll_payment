@@ -29,7 +29,7 @@ class HrPayrollPayment(models.Model):
             ('posted', 'Posted'),
             ('deducted', 'Deducted'),
             ('cancel', 'Cancelled'),
-        ], string='Status', index=True, readonly=True, default='draft', copy=False)
+        ], string='Status',track_visibility='onchange', index=True, readonly=True, default='draft', copy=False)
     move_id = fields.Many2one('account.move', string='Journal Entry', readonly=True, index=True,
         ondelete='restrict', copy=False, help="Link to the automatically generated Journal Items.")
     number = fields.Char(related='move_id.name', store=True, readonly=True, copy=False)

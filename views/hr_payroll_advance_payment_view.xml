@@ -7,7 +7,7 @@
         <field name="name">hr.payroll.payment.tree</field>
         <field name="model">hr.payroll.payment</field>
         <field name="arch" type="xml">
-          <tree string="Payroll payment" decoration-info="state=='draft'" decoration-muted="state=='posted'" edit="false">
+          <tree string="Payroll payment" decoration-info="state=='draft'" decoration-muted="state=='cancel'" edit="false">
                   <field name="employee_id"/>
                   <field name="payment_date"/>
                   <field name="journal_id"/>
@@ -37,7 +37,6 @@
                   </div>
                   <group>
                       <group>
-                        <field name="state" invisible="1"/>
                         <field name="employee_id" />
                         <field name="contract_id"/>
                         <field name="payment_date"/>
