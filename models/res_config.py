@@ -29,8 +29,8 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     def set_values(self):
         super(HRPayrollPaymentConfigSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param(
-            'payment_account', self.payment_account
+            'payment_account', self.payment_account.id
         )
         self.env['ir.config_parameter'].sudo().set_param(
-            'advance_payment_account', self.advance_payment_account
+            'advance_payment_account', self.advance_payment_account.id
         )
