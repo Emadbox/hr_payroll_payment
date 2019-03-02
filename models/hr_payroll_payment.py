@@ -7,6 +7,8 @@ from dateutil.relativedelta import relativedelta, MO, SU
 from odoo import models, fields, api, exceptions, _
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
+_logger = logging.getLogger(__name__)
+
 
 class HrPayrollPayment(models.Model):
     _name = "hr.payroll.payment"
