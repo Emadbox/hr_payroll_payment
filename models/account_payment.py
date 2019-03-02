@@ -14,4 +14,4 @@ class account_payment(models.Model):
     def _compute_destination_account_id(self):
         super(account_payment, self)._compute_destination_account_id()
         if self.employee_payment_account:
-            self.destination_account_id = self.env['hr.payroll.payment.config.settings'].employee_payment_account.id
+            self.destination_account_id = self.employee_payment_account
