@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+import logging
 from datetime import datetime
 from dateutil.relativedelta import relativedelta, MO, SU
 
@@ -66,7 +66,7 @@ class HrPayrollPayment(models.Model):
                 account = self.env['ir.config_parameter'].get_param('hr.payroll.payment.config.settings.advance_payment_account', '').strip()
             else:
                 account = self.env['ir.config_parameter'].get_param('hr.payroll.payment.config.settings.payment_account', '').strip()
-
+            _logger.debug('Account n° %s', account)
             payment_vals = {
                 'amount': pay.amount,
                 'payment_date': pay.payment_date,
