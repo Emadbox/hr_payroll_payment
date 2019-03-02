@@ -61,9 +61,10 @@ class HrPayrollPayment(models.Model):
     def post_payment(self):
         for pay in self:
             if pay.payment_type == 'advance_payment':
-                account = self.advance_payment_account
+                account = self.env['ir.config_parameter'].get_param('hr.payroll.payment.config.settings.advance_payment_account', '').strip()
             else:
-                account = self.payment_account
+                account = self.env['ir.config_parameter'].get_param('hr.payroll.payment.config.settings.payment_account', '').strip()
+
             payment_vals = {
                 'amount': pay.amount,
                 'payment_date': pay.payment_date,
@@ -73,9 +74,10 @@ class HrPayrollPayment(models.Model):
                 'journal_id': pay.journal_id.id,
                 'payment_type': 'outbound',
                 'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id,
-                'employee_payment_account': account.id,
+                'employee_payment_account': account.id
             }
-
+            if account:
+                payment_vals['employee_payment_account'] = int(account)
             payment = self.env['account.payment'].create(payment_vals)
             payment.post()
             pay.write({'payment_id': payment.id})
