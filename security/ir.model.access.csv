@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_payroll_payment,hr.payroll.payment,model_hr.payroll.payment,hr_payroll.group_hr_payroll_user,1,1,1,1
-access_hr_payroll_payment_config,hr.payroll.payment.config,model_hr.payroll.payment.config.settings,hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_hr_payroll_payment,hr.payroll.payment,model_hr_payroll_payment,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_hr_payroll_payment_config,hr.payroll.payment.config,model_hr_payroll_payment_config_settings,hr_payroll.group_hr_payroll_manager,1,1,1,1
