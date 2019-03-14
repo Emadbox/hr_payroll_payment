@@ -44,7 +44,6 @@ class HrPayrollPayment(models.Model):
     ('normal_payment', 'Normal payment'),
     ('advance_payment', 'Advance salary payment'),
     ], string='Payment type', default='normal_payment', states={'draft': [('readonly', False)]}, readonly=True)
-    percentage_by_payslip = fields.Float(string='Percentage by payslip', help="For advance payment, you can indicate the percentage of the payment you would like to deduct on payslip", default=100)
 
     @api.onchange('employee_id')
     def _get_contract(self):
@@ -55,7 +54,7 @@ class HrPayrollPayment(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            seq = self.env['ir.sequence'].next_by_code('hr.payroll.payment') or _('New')
+            seq = self.env['ir.sequence'].next_by_code('hr.payroll_payment') or _('New')
         vals['name'] = seq
         return super(HrPayrollPayment, self).create(vals)
 
