@@ -15,16 +15,16 @@ class HrPayrollPayment(models.Model):
     _description = "Payroll payment"
     _order = "payment_date desc"
 
-    employee_id = fields.Many2one('hr.employee', string="Employee", required=True, ondelete='cascade', index=True)
+    employee_id = fields.Many2one('hr.employee', string="Employee", required=True, ondelete='cascade', index=True, states={'draft': [('readonly', False)]}, readonly=True)
     department_id = fields.Many2one('hr.department', string="Department", related="employee_id.department_id",
         readonly=True)
-    payment_date = fields.Date(string="Payment date")
-    amount = fields.Monetary(string="Payment amount", required=True)
+    payment_date = fields.Date(string="Payment date", states={'draft': [('readonly', False)]}, readonly=True)
+    amount = fields.Monetary(string="Payment amount", required=True, states={'draft': [('readonly', False)]}, readonly=True)
     currency_id = fields.Many2one('res.currency', string='Currency', required=True,
         default=lambda self: self.env.user.company_id.currency_id)
     communication = fields.Char(string='Memo')
     journal_id = fields.Many2one('account.journal', string='Payment Journal',
-        required=True, domain=[('type', 'in', ('bank', 'cash'))])
+        required=True, domain=[('type', 'in', ('bank', 'cash'))], states={'draft': [('readonly', False)]}, readonly=True)
     company_id = fields.Many2one('res.company', related='journal_id.company_id', string='Company', readonly=True, default=lambda self: self.env.user.company_id)
     state = fields.Selection([
             ('draft','Unposted'),
@@ -35,15 +35,15 @@ class HrPayrollPayment(models.Model):
     payment_id = fields.Many2one('account.payment', string='Payment entry', readonly=True, index=True,
         ondelete='restrict', copy=False, help="Link to the automatically generated Payment in accounting.")
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
-        help="The contract for which applied this input")
+        help="The contract for which applied this input", states={'draft': [('readonly', False)]}, readonly=True)
     reference = fields.Char(string='Reference',readonly=True, states={'draft': [('readonly', False)]},
-       help="The receipt number or other reference of this payment.")
+       help="The receipt number or other reference of this payment.", states={'draft': [('readonly', False)]}, readonly=True)
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
     states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
     payment_type = fields.Selection([
     ('normal_payment', 'Normal payment'),
     ('advance_payment', 'Advance salary payment'),
-    ], string='Payment type', default='normal_payment')
+    ], string='Payment type', default='normal_payment', states={'draft': [('readonly', False)]}, readonly=True)
     percentage_by_payslip = fields.Float(string='Percentage by payslip', help="For advance payment, you can indicate the percentage of the payment you would like to deduct on payslip", default=100)
 
     @api.onchange('employee_id')
@@ -63,16 +63,13 @@ class HrPayrollPayment(models.Model):
     def post_payment(self):
         for pay in self:
             if pay.payment_type == 'advance_payment':
-                account = self.company_id.advance_salary_payment_account_id.id
+                account = self.company_id.advance_salary_payment_account_id
             else:
-                account = self.company_id.salary_payment_account_id.id
-            _logger.debug('##123## Account Test %s', 'Ceci est un test')
-            _logger.debug('##123## Account Test %s', self.company_id)
-            _logger.debug('##123## Account n° %s', account)
+                account = self.company_id.salary_payment_account_id
             payment_vals = {
                 'amount': pay.amount,
                 'payment_date': pay.payment_date,
-                'communication': pay.communication,
+                'communication': pay.reference,
                 'partner_id': pay.employee_id.address_home_id.id or False,
                 'partner_type': 'supplier',
                 'journal_id': pay.journal_id.id,

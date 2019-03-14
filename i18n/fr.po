@@ -1,0 +1,287 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_payroll_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-14 03:39+0000\n"
+"PO-Revision-Date: 2019-03-14 03:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_res_company_advance_salary_payment_account_id
+msgid "Account for advance salary payment"
+msgstr "N° de compte pour les acomptes/avances sur salaire"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_res_company_salary_payment_account_id
+msgid "Account for salary payment"
+msgstr "N° de compte pour le paiement des salaires"
+
+#. module: hr_payroll_payment
+#: selection:hr.payroll.payment,payment_type:0
+msgid "Advance salary payment"
+msgstr "Acompte/Avance sur salaire"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.view,arch_db:hr_payroll_payment.hr_payroll_payment_view_tree
+msgid "Amount"
+msgstr "Montant"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.view,arch_db:hr_payroll_payment.view_hr_payroll_payment_configuration
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.view,arch_db:hr_payroll_payment.hr_payroll_payment_view_form
+#: model:ir.ui.view,arch_db:hr_payroll_payment.view_hr_payroll_payment_configuration
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: hr_payroll_payment
+#: selection:hr.payroll.payment,state:0
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: hr_payroll_payment
+#: model:ir.model,name:hr_payroll_payment.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_company_id
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,help:hr_payroll_payment.field_hr_payroll_payment_company_id
+msgid "Company related to this journal"
+msgstr "Société du journal concerné"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_contract_id
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_create_uid
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_create_date
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_advance_salary_payment_account_id
+msgid "Debit account for advance"
+msgstr "Compte de débit pour les avances"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_salary_payment_account_id
+msgid "Debit account for payment"
+msgstr "Compte de débit pour les payments"
+
+#. module: hr_payroll_payment
+#: selection:hr.payroll.payment,state:0
+msgid "Deducted"
+msgstr "Déduit"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_department_id
+msgid "Department"
+msgstr "Département"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_display_name
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_employee_id
+msgid "Employee"
+msgstr "Employé"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_account_payment_employee_payment_account
+msgid "Employee payment account"
+msgstr "N° de compte de l'employé"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,help:hr_payroll_payment.field_hr_payroll_payment_percentage_by_payslip
+msgid "For advance payment, you can indicate the percentage of the payment you would like to deduct on payslip"
+msgstr "Pour les acomptes, vous pouvez indiquer le pourcentage de l'acompte à déduire sur les salaires"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_id
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment___last_update
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_write_uid
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour le"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_config_settings_write_date
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,help:hr_payroll_payment.field_hr_payroll_payment_payment_id
+msgid "Link to the automatically generated Payment in accounting."
+msgstr "Lien vers le paiement créé dans les comptes"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_communication
+msgid "Memo"
+msgstr "Mémo"
+
+#. module: hr_payroll_payment
+#: code:addons/hr_payroll_payment/models/hr_payroll_payment.py:42
+#: code:addons/hr_payroll_payment/models/hr_payroll_payment.py:57
+#: code:addons/hr_payroll_payment/models/hr_payroll_payment.py:58
+#, python-format
+msgid "New"
+msgstr "Nouveau"
+
+#. module: hr_payroll_payment
+#: selection:hr.payroll.payment,payment_type:0
+msgid "Normal payment"
+msgstr "Paiement normal"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_name
+msgid "Order Reference"
+msgstr "Référence"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_journal_id
+msgid "Payment Journal"
+msgstr "Journal des règlements"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_amount
+msgid "Payment amount"
+msgstr "Montant du règlement"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_payment_date
+msgid "Payment date"
+msgstr "Date du règlement"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_payment_id
+msgid "Payment entry"
+msgstr ""
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_payment_type
+msgid "Payment type"
+msgstr "Type de paiement"
+
+#. module: hr_payroll_payment
+#: model:ir.model,name:hr_payroll_payment.model_account_payment
+msgid "Payments"
+msgstr "Paiements"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.menu,name:hr_payroll_payment.menu_hr_payroll_payment_settings
+msgid "Payroll Payment Settings"
+msgstr "Configuration des paiements de salaire"
+
+#. module: hr_payroll_payment
+#: model:ir.actions.act_window,name:hr_payroll_payment.hr_payroll_payment_action
+#: model:ir.model,name:hr_payroll_payment.model_hr_payroll_payment
+#: model:ir.ui.menu,name:hr_payroll_payment.menu_hr_payroll_payment_tree
+#: model:ir.ui.view,arch_db:hr_payroll_payment.hr_payroll_payment_view_form
+#: model:ir.ui.view,arch_db:hr_payroll_payment.hr_payroll_payment_view_tree
+msgid "Payroll payment"
+msgstr "Paiement des salaires"
+
+#. module: hr_payroll_payment
+#: model:ir.actions.act_window,name:hr_payroll_payment.action_hr_payroll_payment_settings
+msgid "Payroll payment Settings"
+msgstr "Configuration des paiements de salaire"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.view,arch_db:hr_payroll_payment.view_hr_payroll_payment_configuration
+msgid "Payroll payment configuration"
+msgstr "Configuration des paiements de salaire"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_percentage_by_payslip
+msgid "Percentage by payslip"
+msgstr "Pourcentage par bulletin de paie"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.view,arch_db:hr_payroll_payment.hr_payroll_payment_view_form
+msgid "Post"
+msgstr "Confirmer"
+
+#. module: hr_payroll_payment
+#: selection:hr.payroll.payment,state:0
+msgid "Posted"
+msgstr "Confirmé"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_reference
+msgid "Reference"
+msgstr "Référence"
+
+#. module: hr_payroll_payment
+#: model:ir.ui.view,arch_db:hr_payroll_payment.view_hr_payroll_payment_configuration
+msgid "Settings"
+msgstr "Paramètres"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,field_description:hr_payroll_payment.field_hr_payroll_payment_state
+msgid "Status"
+msgstr "Statut"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,help:hr_payroll_payment.field_hr_payroll_payment_contract_id
+msgid "The contract for which applied this input"
+msgstr "Le contrat sur lequel déduire les paiements"
+
+#. module: hr_payroll_payment
+#: model:ir.model.fields,help:hr_payroll_payment.field_hr_payroll_payment_reference
+msgid "The receipt number or other reference of this payment."
+msgstr "Le numéro de réçu ou tout autre référence pour ce paiement"
+
+#. module: hr_payroll_payment
+#: selection:hr.payroll.payment,state:0
+msgid "Unposted"
+msgstr "Non confirmé"
+
+#. module: hr_payroll_payment
+#: model:ir.model,name:hr_payroll_payment.model_hr_payroll_payment_config_settings
+msgid "hr.payroll.payment.config.settings"
+msgstr "hr.payroll.payment.config.settings"
