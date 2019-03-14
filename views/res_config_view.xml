@@ -11,6 +11,7 @@
                     <button string="Cancel" type="object" name="cancel" class="oe_link" special="cancel"/>
                 </header>
                 <group string="Settings">
+                    <field name="company_id" invisible="1"/>
                     <field name="salary_payment_account_id"/>
                     <field name="advance_salary_payment_account_id"/>
                 </group>
