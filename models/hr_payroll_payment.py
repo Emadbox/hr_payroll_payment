@@ -63,9 +63,9 @@ class HrPayrollPayment(models.Model):
     def post_payment(self):
         for pay in self:
             if pay.payment_type == 'advance_payment':
-                account = self.env['ir.config_parameter'].get_param('hr.payroll.payment.config.settings.advance_payment_account', '').strip()
+                account = self.company_id.advance_salary_payment_account_id.id
             else:
-                account = self.env['ir.config_parameter'].get_param('hr.payroll.payment.config.settings.payment_account', '').strip()
+                account = self.company_id.salary_payment_account_id.id
             _logger.debug('Account n° %s', account)
             payment_vals = {
                 'amount': pay.amount,
