@@ -24,10 +24,9 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
             self.env['ir.config_parameter'].set_param(key_name, value)
 
     @api.model
-    def get_default_params(self):
-        res = {}
-        for field_name, key_name in PARAMS:
-            value = self.env['ir.config_parameter'].get_param(key_name, '').strip()
-            if value:
-                res[field_name] = int(value)
-        return res
+    def get_default_params(self, fields):
+        company = self.env.user.company_id
+        return {
+            'payment_account': company.salary_payment_account_id
+            'advance_payment_account': company.advance_salary_payment_account_id
+        }
