@@ -6,7 +6,7 @@
         <record id="seq_sale_order" model="ir.sequence">
             <field name="name">Salary advance payment</field>
             <field name="code">hr.payroll.advance_payment</field>
-            <field name="prefix">SAPRCPT/%(range_year)s/</field>
+            <field name="prefix">SALRCPT/%(range_year)s/</field>
             <field name="padding">4</field>
         </record>
     </data>
