@@ -12,21 +12,8 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
     _name = 'hr.payroll.payment.config.settings'
     _inherit = 'res.config.settings'
 
-    payment_account = fields.Many2one(comodel_name='account.account', string='Debit account for payment', domain=[('deprecated', '=', False)])
-    advance_payment_account = fields.Many2one(comodel_name='account.account', string='Debit account for advance', domain=[('deprecated', '=', False)])
+    company_id = fields.Many2one('res.company', string='Company', required=True,
+        default=lambda self: self.env.user.company_id)
 
-    @api.multi
-    def set_params(self):
-        self.ensure_one()
-
-        for field_name, key_name in PARAMS:
-            value = getattr(self, field_name, '').id
-            self.env['ir.config_parameter'].set_param(key_name, value)
-
-    @api.model
-    def get_default_params(self, fields):
-        company = self.env.user.company_id
-        return {
-            'payment_account': company.salary_payment_account_id
-            'advance_payment_account': company.advance_salary_payment_account_id
-        }
+    salary_payment_account_id = fields.Many2one(related='company_id.salary_payment_account_id', string='Debit account for payment', domain=[('deprecated', '=', False)])
+    advance_salary_payment_account_id = fields.Many2one(related='company_id.advance_salary_payment_account_id', string='Debit account for advance', domain=[('deprecated', '=', False)])
