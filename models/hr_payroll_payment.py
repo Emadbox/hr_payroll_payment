@@ -36,7 +36,7 @@ class HrPayrollPayment(models.Model):
         ondelete='restrict', copy=False, help="Link to the automatically generated Payment in accounting.")
     contract_id = fields.Many2one('hr.contract', string='Contract', required=True,
         help="The contract for which applied this input", states={'draft': [('readonly', False)]}, readonly=True)
-    reference = fields.Char(string='Reference',readonly=True,
+    reference = fields.Char(string='Reference',
         help="The receipt number or other reference of this payment.", states={'draft': [('readonly', False)]}, readonly=True)
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
     states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
