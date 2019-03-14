@@ -67,6 +67,7 @@ class HrPayrollPayment(models.Model):
             else:
                 account = self.company_id.salary_payment_account_id.id
             _logger.debug('##123## Account Test %s', 'Ceci est un test')
+            _logger.debug('##123## Account Test %s', self.company_id)
             _logger.debug('##123## Account n° %s', account)
             payment_vals = {
                 'amount': pay.amount,
