@@ -25,7 +25,7 @@ class HrPayrollPayment(models.Model):
     communication = fields.Char(string='Memo')
     journal_id = fields.Many2one('account.journal', string='Payment Journal',
         required=True, domain=[('type', 'in', ('bank', 'cash'))])
-    company_id = fields.Many2one('res.company', related='journal_id.company_id', string='Company', readonly=True)
+    company_id = fields.Many2one('res.company', related='journal_id.company_id', string='Company', readonly=True, default=lambda self: self.env.user.company_id)
     state = fields.Selection([
             ('draft','Unposted'),
             ('posted', 'Posted'),
