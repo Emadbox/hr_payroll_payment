@@ -54,7 +54,7 @@ class HrPayrollPayment(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            seq = self.env['ir.sequence'].next_by_code('hr.payroll_payment') or _('New')
+            seq = self.env['ir.sequence'].next_by_code('>hr.payroll.advance_payment') or _('New')
         vals['name'] = seq
         return super(HrPayrollPayment, self).create(vals)
 
