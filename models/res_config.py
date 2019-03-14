@@ -2,19 +2,19 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models, api
-
+'''
 PARAMS = [
     ("payment_account", "hr.payroll.payment.config.settings.payment_account"),
     ("advance_payment_account", "hr.payroll.payment.config.settings.advance_payment_account"),
 ]
-
+'''
 class HRPayrollPaymentConfigSettings(models.TransientModel):
     _name = 'hr.payroll.payment.config.settings'
     _inherit = 'res.config.settings'
 
-    payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
-    advance_payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
-
+    default_payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
+    default_advance_payment_account = fields.Many2one(comodel_name='account.account', string='Debit account', domain=[('deprecated', '=', False)])
+'''
     @api.multi
     def set_params(self):
         self.ensure_one()
@@ -31,3 +31,4 @@ class HRPayrollPaymentConfigSettings(models.TransientModel):
             if value:
                 res[field_name] = int(value)
         return res
+'''
